@@ -19,10 +19,15 @@ Ce test consiste à recréer le jeu snake dans une page web! Au minimum, le jeu 
 - L'apparition de nouvelles boulettes
 - La gestion des conflicts (et mort du serpent!)
 
+----------------
+
 ### Règles
 
 - A compter de la réception du mail te donnant accès à ce dépôt, tu as **48h** pour coder et nous soumettre tes codes sources (attention, il ne faut pas être en retard!).
 - Nous acceptons ton travail même si il n'est pas terminé.
+
+----------------
+
 
 ### Consignes techniques
 
@@ -33,6 +38,9 @@ Ce test consiste à recréer le jeu snake dans une page web! Au minimum, le jeu 
 
 **NOTE:** Si tu as du code à transpiler/compiler par rapport aux bonus, crée un README.md afin de nous expliquer comment lancer ton application
 
+----------------
+
+
 ### Modalités de rendu
 
 Forker le dépôt et créer une pull request avec pour nom `NOM_PRENOM@ANNEE` (les 6 premières lettres du nom de famille et la 1ère lettre du nom de famille). Exemples:
@@ -41,6 +49,9 @@ Forker le dépôt et créer une pull request avec pour nom `NOM_PRENOM@ANNEE` (l
 |-------------|-------------|-------------|
 | Grégory | NEUT         | neut_g@2020  |
 | Yvan | PASTA         | pasta_y@2020  |
+
+----------------
+
 
 ### Les bonus
 
@@ -59,8 +70,6 @@ Un bonus ajoute une contrainte complémentaire à l'exercice permettant de démo
 | Jouer du son |
 | Afficher le top score |
 | Afficher les 10 meilleurs scores |
-
-------------------------
 
 | Bonus techniques |
 |-------------|
