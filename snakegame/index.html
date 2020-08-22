@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Snake Game ! Come and play </title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>SNAKE GAME</h1>
+    <canvas id="gameblock" width="600" height="600">Veuillez mettre à jour votre navigateur pour accéder au jeu.</canvas>
+    <p class="score">Score : <span id="score">0</span></p>
+    <p>Dev by Vincent Manachem, 2020</p>
+
+    <div id="rules">
+        <h2>RULES :</h2>
+        <ul>
+            <li>Try to feed the snake without hit the side of the map (you would be dead :( )</li>
+            <li>If you eat a candy your snake will get bigger</li>
+            <li>Use the directional arrows of your keyboard to play, the snake will move when you will press one directional arrow</li>
+            <li>You can't turn around, so if you go on the right you can't go on the left direction</li>
+            <li>The space bar can put the game in pause. Press any arrow (exept the reverse arrow : see the previous rule)</li>
+        </ul>
+    </div>
+
+    <audio id="dead" src="sons/0477.wav"></audio>
+    <audio id="bonbon" src="sons/1417.wav"></audio>
+
+    <script src="js/snake.js"></script>
+</body>
+
+</html>

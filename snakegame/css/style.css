@@ -1,0 +1,41 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: url(../img/snake.jpg);
+  text-align: center;
+  font-family: roboto;
+}
+body h1 {
+  margin-top: 35px;
+}
+body .score {
+  font-size: 38px;
+  padding: 10px 50px 10px 50px;
+  align-self: center;
+  color: white;
+  background-color: black;
+  border: 5px solid white;
+  margin-bottom: 10px;
+}
+body #gameblock {
+  background-color: black;
+  align-self: center;
+  margin-top: 35px;
+  border: 5px solid white;
+}
+body #rules {
+  position: absolute;
+  width: 600px;
+  text-align: left;
+  margin-top: 200px;
+  line-height: 50px;
+}
+body #rules h2 {
+  font-size: 28px;
+  margin-left: 35px;
+}
+body #rules ul {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=style.css.map */
