@@ -3,7 +3,6 @@ let snakeX = []
 let snakeY = []
 let direction = 'Right'
 let score = 0
-let topScore = score
 
 // Initialize the map
 for (let i = 0; i < map.length; i++) {
@@ -19,15 +18,12 @@ let apple = [getRandomInt(map[0].length), getRandomInt(map.length)]
 
 // Initialize the variable and update the TopScore
 const initGame = () => {
-  if (score > topScore) {
-    topScore = score
-  }
   score = 0
   popApple()
   document.getElementById('fail').innerHTML = ''
   document.getElementById('topScore').innerHTML = topScore
   snakeX.push(10, 10, 10, 10)
-  snakeY.push(10, 11, 12, 13)
+  snakeY.push(13, 12, 11, 10)
   moveSnake()
 }
 
@@ -108,11 +104,10 @@ const moveSnake = () => {
 
 // Check if there is any collision with the snake itself
 const checkCollisionSnake = () => {
-  const head = 0
+  const headX = snakeX[0]
+  const headY = snakeY[0]
   for (let i = 1; i < snakeX.length; i++) {
-    // console.log(i, snakeX[head], snakeY[head])
-    if (snakeX[head] === snakeX[i] && snakeY[head] === snakeY[i]) {
-      // console.log(i, snakeX[head], snakeY[head], snakeX[i], snakeY[i])
+    if (headX === snakeX[i] && headY === snakeY[i]) {
       return true
     }
   }
@@ -122,7 +117,6 @@ const checkCollisionSnake = () => {
 // Checks a match in the coordonates to see if there is a collision with the apple
 const eatApple = () => {
   if (snakeX[0] === apple[0] && snakeY[0] === apple[1]) {
-    console.log('youpi')
     return true
   }
   return false
@@ -131,6 +125,8 @@ const eatApple = () => {
 // Update the score and add coordonates to the snake array to make it grow
 const growSnake = () => {
   score++
+  console.log(snakeY[0])
+  console.log(snakeX[0])
   snakeY.unshift(snakeY[0])
   snakeX.unshift(snakeX[0])
 }
@@ -139,13 +135,13 @@ const growSnake = () => {
 // If there is a collision with the apple : the snake get bigger 
 const checkCollision = () => {
   for (let i = 0; i < snakeX.length; i++) {
-    if (snakeX[i] >= map.length || snakeX[i] <= 0) {
+    if (snakeX[i] >= map.length || snakeX[i] < 0) {
       return true
-    } else if (snakeY[i] >= map[i].length || snakeY[i] <= 0) {
+    } else if (snakeY[i] >= map[i].length || snakeY[i] < 0) {
       return true
-    // } else if (checkCollisionSnake()) {
-    //   return true
-    } else if (eatApple()) {
+    } else if (i === 0 && checkCollisionSnake()) {
+      return true
+    } else if (i === 0 && eatApple()) {
       growSnake()
       popApple()
     }
@@ -169,7 +165,7 @@ const displaySnake = () => {
     document.getElementById('fail').innerHTML = 'Failure!'
     setTimeout(() => {
       location = location
-    }, 2000)
+    }, 1500)
   }
   for (let i = 0; i < map.length; i++) {
     result += map[i].join('') + '<br >'
