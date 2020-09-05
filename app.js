@@ -48,16 +48,12 @@ const clearArray = () => {
 const getDirection = (event) => {
   const key = event.keyCode
   if (key === 37 && direction !== 'Right') {
-    // moveLeft()
     direction = 'Left'
   } else if (key === 38 && direction !== 'Up') {
-    // moveDown()
     direction = 'Down'
   } else if (key === 39 && direction !== 'Left') {
-    // moveRight()
     direction = 'Right'
   } else if (key === 40 && direction !== 'Down') {
-    // moveUp()
     direction = 'Up'
   }
 }
