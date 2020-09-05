@@ -3,6 +3,7 @@ let snakeX = []
 let snakeY = []
 let direction = 'Right'
 let score = 0
+let speed = 500
 let bite = new Audio()
 let death = new Audio()
 
@@ -25,7 +26,7 @@ function getRandomInt(max) {
 
 let apple = [getRandomInt(map[0].length), getRandomInt(map.length)]
 
-// Initialize the variable and update the TopScore
+// Initialize the variables and launch the game
 const initGame = () => {
   score = 0
   popApple()
@@ -199,5 +200,4 @@ const displaySnake = () => {
 // launch the game and repeat the call to move the snake every 500 miliseconds.
 initGame()
 document.addEventListener('keydown', getDirection)
-// console.log(snakeX[0], snakeY[0])
-const game = setInterval(moveSnake, 500)
+const game = setInterval(moveSnake, speed)
