@@ -3,9 +3,11 @@ let snakeX = []
 let snakeY = []
 let direction = 'Right'
 let score = 0
-let speed = 500
+let speed = 280
 let bite = new Audio()
 let death = new Audio()
+const storage = localStorage
+let idLocalStorage = 0
 
 bite.src = 'audio/bites.mp3'
 death.src = 'audio/death.mp3'
@@ -133,15 +135,20 @@ const growSnake = () => {
   score++
   snakeY.unshift(snakeY[0])
   snakeX.unshift(snakeX[0])
+  speed -= 10
+
+  game = setInterval(moveSnake, speed)
+
+
 }
 
 // if there is no collision between the walls or the snake itself, it prints the snake on the map
 // If there is a collision with the apple : the snake get bigger 
 const checkCollision = () => {
   for (let i = 0; i < snakeX.length; i++) {
-    if (snakeX[i] >= map.length || snakeX[i] < 0) {
+    if (snakeX[i] >= map.length - 1 || snakeX[i] <= 0) {
       return true
-    } else if (snakeY[i] >= map[i].length || snakeY[i] < 0) {
+    } else if (snakeY[i] >= map[i].length - 1 || snakeY[i] <= 0) {
       return true
     } else if (i === 0 && checkCollisionSnake()) {
       return true
@@ -186,6 +193,8 @@ const displaySnake = () => {
   if (checkCollision()) {
     death.play()
     document.getElementById('fail').innerHTML = 'Failure!'
+    storage.setItem(`score`, score)
+    idLocalStorage++
     setTimeout(() => {
       location = location
     }, 1500)
@@ -198,6 +207,21 @@ const displaySnake = () => {
 }
 
 // launch the game and repeat the call to move the snake every 500 miliseconds.
-initGame()
-document.addEventListener('keydown', getDirection)
-const game = setInterval(moveSnake, speed)
+function init() {
+  try {
+    initGame()
+    document.addEventListener('keydown', getDirection)
+    let game = setInterval(moveSnake, speed)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+function getHighScore() {
+  const allScores = Object.values(localStorage)
+  const sortedScores = allScores.sort((a, b) => b - a)
+  return sortedScores[0]
+}
+
+document.getElementById('highScore').innerHTML = getHighScore()
+init()
