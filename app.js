@@ -21,7 +21,7 @@ const initGame = () => {
   score = 0
   popApple()
   document.getElementById('fail').innerHTML = ''
-  document.getElementById('topScore').innerHTML = topScore
+  // document.getElementById('topScore').innerHTML = topScore
   snakeX.push(10, 10, 10, 10)
   snakeY.push(13, 12, 11, 10)
   moveSnake()
@@ -44,16 +44,16 @@ const clearArray = () => {
 const getDirection = (event) => {
   const key = event.keyCode
   if (key === 37 && direction !== 'Right') {
-    moveLeft()
+    // moveLeft()
     direction = 'Left'
   } else if (key === 38 && direction !== 'Up') {
-    moveDown()
+    // moveDown()
     direction = 'Down'
   } else if (key === 39 && direction !== 'Left') {
-    moveRight()
+    // moveRight()
     direction = 'Right'
   } else if (key === 40 && direction !== 'Down') {
-    moveUp()
+    // moveUp()
     direction = 'Up'
   }
 }
