@@ -15,8 +15,12 @@ for (let i = 0; i < map.length; i++) {
 }
 
 // Generate a first random apple
-function getRandomInt (max) {
-  return Math.floor(Math.random() * Math.floor(max))
+function getRandomInt(max) {
+  let random = Math.floor(Math.random() * Math.floor(max))
+  if (random === 0) {
+    random = 1
+  }
+  return random
 }
 
 let apple = [getRandomInt(map[0].length), getRandomInt(map.length)]
@@ -25,7 +29,7 @@ let apple = [getRandomInt(map[0].length), getRandomInt(map.length)]
 const initGame = () => {
   score = 0
   popApple()
-  document.getElementById('fail').innerHTML = ''
+  document.getElementById('fail').innerHTML = 'Use the arrow keys to switch directions and go eat the apples !'
   snakeX.push(10, 10, 10, 10)
   snakeY.push(13, 12, 11, 10)
   moveSnake()
@@ -33,8 +37,8 @@ const initGame = () => {
 
 // Generate a new Apple
 const popApple = () => {
-  apple[0] = getRandomInt(map.length)
-  apple[1] = getRandomInt(map[0].length)
+  apple[0] = getRandomInt(map.length - 1)
+  apple[1] = getRandomInt(map[0].length - 1)
 }
 
 // Fill the map before printing the snake and the apple
@@ -151,7 +155,25 @@ const checkCollision = () => {
 
 // Display the apple on the map
 const putApple = () => {
-  map[apple[0]][apple[1]] = '0'
+  map[apple[0]][apple[1]] = 'O'
+}
+
+const changeColor = (mapRow, rowNb) => {
+  let result = ''
+
+  const str = mapRow.join('')
+  for (let i = 0; i < str.length; i++) {
+    if (i === 0 || i === 39 || rowNb === 0 || rowNb === 24) {
+      result += '<span style="color: black">' + str.charAt(i) + '</span>'
+    } else if (str.charAt(i) === 'x') {
+      result += '<span style="color: white">' + str.charAt(i) + '</span>'
+    } else if (str.charAt(i) === '0') {
+      result += '<span style="color: green">' + str.charAt(i) + '</span>'
+    } else {
+      result += '<span style="color: red">' + str.charAt(i) + '</span>'
+    }
+  }
+  return result
 }
 
 // Charge the map : if there is a collision, refresh the page and reboot the game.
@@ -168,7 +190,7 @@ const displaySnake = () => {
     }, 1500)
   }
   for (let i = 0; i < map.length; i++) {
-    result += map[i].join('') + '<br >'
+    result += changeColor(map[i], i) + '<br >'
   }
   document.getElementById('map').innerHTML = result
   document.getElementById('score').innerHTML = score
