@@ -3,6 +3,11 @@ let snakeX = []
 let snakeY = []
 let direction = 'Right'
 let score = 0
+let bite = new Audio()
+let death = new Audio()
+
+bite.src = 'audio/bites.mp3'
+death.src = 'audio/death.mp3'
 
 // Initialize the map
 for (let i = 0; i < map.length; i++) {
@@ -21,7 +26,6 @@ const initGame = () => {
   score = 0
   popApple()
   document.getElementById('fail').innerHTML = ''
-  // document.getElementById('topScore').innerHTML = topScore
   snakeX.push(10, 10, 10, 10)
   snakeY.push(13, 12, 11, 10)
   moveSnake()
@@ -117,6 +121,7 @@ const checkCollisionSnake = () => {
 // Checks a match in the coordonates to see if there is a collision with the apple
 const eatApple = () => {
   if (snakeX[0] === apple[0] && snakeY[0] === apple[1]) {
+    bite.play()
     return true
   }
   return false
@@ -125,8 +130,6 @@ const eatApple = () => {
 // Update the score and add coordonates to the snake array to make it grow
 const growSnake = () => {
   score++
-  console.log(snakeY[0])
-  console.log(snakeX[0])
   snakeY.unshift(snakeY[0])
   snakeX.unshift(snakeX[0])
 }
@@ -162,6 +165,7 @@ const displaySnake = () => {
   clearArray()
   putApple()
   if (checkCollision()) {
+    death.play()
     document.getElementById('fail').innerHTML = 'Failure!'
     setTimeout(() => {
       location = location
