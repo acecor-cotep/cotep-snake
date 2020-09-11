@@ -43,12 +43,13 @@ Ce test consiste à recréer le jeu snake dans une page web! Au minimum, le jeu 
 
 ### Modalités de rendu
 
-Forker le dépôt et créer une pull request avec pour nom `NOM_PRENOM@ANNEE` (les 6 premières lettres du nom de famille et la 1ère lettre du nom de famille). Exemples:
+Forker le dépôt et créer une pull request avec pour nom `NOM_PRENOM@ANNEE` (les 6 premières lettres du nom de famille et la 1ère lettre du prénom). Exemples:
 
 | Prénom   | Nom    | Nom de la pull request    |
 |-------------|-------------|-------------|
 | Grégory | NEUT         | neut_g@2020  |
 | Yvan | PASTA         | pasta_y@2020  |
+| Gwenaelle | BOURGOING         | bourgo_g@2020  |
 
 ----------------
 
