@@ -32,6 +32,7 @@ Ce test consiste à recréer le jeu snake dans une page web ! Au minimum, le jeu
 ### Consignes techniques
 
 - Les langages à utiliser sont *html*, *css* et *Javascript*.
+- Utiliser un framework (Angular ou Vue.js).
 - Créer un fichier `index.html` qui permet une fois chargé de pouvoir accéder au jeu.
 - Il n'y a pas de limite au nombre de fichiers.
 - Le code doit être commenté et propre.
