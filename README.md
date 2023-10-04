@@ -23,7 +23,7 @@ Ce test consiste à recréer le jeu snake dans une page web ! Au minimum, le jeu
 
 ### Règles
 
-- A compter de la réception du mail donnant accès à ce dépôt, vous avez **48h** pour coder et nous soumettre les codes sources. Attention, il ne faut pas être en retard !.
+- A compter de la réception du mail donnant accès à ce dépôt, vous avez **48h** pour coder et nous soumettre les codes sources. Attention, il ne faut pas être en retard !
 - Nous acceptons votre travail même si il n'est pas terminé.
 
 ----------------
