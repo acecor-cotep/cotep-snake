@@ -24,7 +24,7 @@ Ce test consiste à recréer le jeu snake dans une page web ! Au minimum, le jeu
 ### Règles
 
 - A compter de la réception du mail donnant accès à ce dépôt, vous avez **48h** pour coder et nous soumettre les codes sources. Attention, il ne faut pas être en retard !
-- Nous acceptons votre travail même si il n'est pas terminé.
+- Nous acceptons votre travail même s'il n'est pas terminé.
 
 ----------------
 
@@ -47,8 +47,8 @@ Forker le dépôt et créer une pull request avec pour nom `NOM_PRENOM@ANNEE` (l
 
 | Prénom   | Nom    | Nom de la pull request    |
 |-------------|-------------|-------------|
-| Gwenaelle | BOURGOING         | bourgo_g@2020  |
-| Yvan | PASTA         | pasta_y@2020  |
+| Gwenaelle | BOURGOING         | bourgo_g@2023  |
+| Yvan | PASTA         | pasta_y@2023  |
 
 ----------------
 
