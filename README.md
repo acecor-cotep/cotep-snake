@@ -4,39 +4,39 @@
 
 ### Présentation
 
-Bonjour, si tu es sur ce dépôt, c'est que tu a été sélectionné afin de participer à la première étape de ton recrutement chez COTEP. Félicitation!
+Bonjour, si vous êtes sur ce dépôt, c'est que vous avez été sélectionné afin de participer à la première étape du recrutement chez COTEP. Félicitations !
 
-Comme nous te l'avons expliqué par email, nous souhaitons que tu réalise un test technique afin de pouvoir évaluer tes compétences et tes capacités de raisonnement. 
+Comme expliqué par email, nous souhaitons que vous réalisiez un test technique afin de pouvoir évaluer vos compétences et capacités de raisonnement. 
 
-Ce test consiste à recréer le jeu snake dans une page web! Au minimum, le jeu doit comprendre: 
+Ce test consiste à recréer le jeu snake dans une page web ! Au minimum, le jeu doit comprendre : 
 
-- La carte
-- Le serpent
-- Pouvoir déplacer le serpent avec les touches du clavier
-- Pouvoir manger des boulettes avec le serpent
-- Faire grandir le serpent
-- L'avancée automatique du serpent
-- L'apparition de nouvelles boulettes
-- La gestion des conflicts (et mort du serpent!)
-
+- la carte,
+- le serpent,
+- pouvoir déplacer le serpent avec les touches du clavier,
+- pouvoir manger des boulettes avec le serpent,
+- faire grandir le serpent,
+- l'avancée automatique du serpent,
+- l'apparition de nouvelles boulettes,
+- la gestion des conflits (et mort du serpent !).
+  
 ----------------
 
 ### Règles
 
-- A compter de la réception du mail te donnant accès à ce dépôt, tu as **48h** pour coder et nous soumettre tes codes sources (attention, il ne faut pas être en retard!).
-- Nous acceptons ton travail même si il n'est pas terminé.
+- A compter de la réception du mail donnant accès à ce dépôt, vous avez **48h** pour coder et nous soumettre les codes sources (attention, il ne faut pas être en retard !).
+- Nous acceptons votre travail même si il n'est pas terminé.
 
 ----------------
 
 
 ### Consignes techniques
 
-- Les langages à utiliser sont *Html*, *Css* et *Javascript*.
+- Les langages à utiliser sont *html*, *css* et *Javascript*.
 - Créer un fichier `index.html` qui permet une fois chargé de pouvoir accéder au jeu.
-- Il n'y as pas de limite au nombre de fichiers.
+- Il n'y a pas de limite au nombre de fichiers.
 - Le code doit être commenté et propre.
 
-**NOTE:** Si tu as du code à transpiler/compiler par rapport aux bonus, crée un README.md afin de nous expliquer comment lancer ton application
+**NOTE :** Si du code doit être transpilé/compilé par rapport aux bonus, créer un README.md afin de nous expliquer comment lancer l'application.
 
 ----------------
 
@@ -47,18 +47,15 @@ Forker le dépôt et créer une pull request avec pour nom `NOM_PRENOM@ANNEE` (l
 
 | Prénom   | Nom    | Nom de la pull request    |
 |-------------|-------------|-------------|
-| Grégory | NEUT         | neut_g@2020  |
-| Yvan | PASTA         | pasta_y@2020  |
 | Gwenaelle | BOURGOING         | bourgo_g@2020  |
+| Yvan | PASTA         | pasta_y@2020  |
 
 ----------------
 
 
 ### Les bonus
 
-#### Bonus, kézako ?
-
-Un bonus ajoute une contrainte complémentaire à l'exercice permettant de démontrer ta puissance! Les bonus ne sont pas obligatoires.
+Un bonus ajoute une contrainte complémentaire à l'exercice. Les bonus ne sont pas obligatoires.
 
 #### Liste
 
@@ -66,7 +63,7 @@ Un bonus ajoute une contrainte complémentaire à l'exercice permettant de démo
 |-------------|
 | Ajouter la gestion du score |
 | Gérer les actions `pause`, `stop`, `resume` et `restart` |
-| Gérer l'accélaration de la vitesse du jeu par rapport à la taille du serpent |
+| Gérer l'accélération de la vitesse du jeu par rapport à la taille du serpent |
 | Ajouter de la couleur aux boulettes et au serpent |
 | Jouer du son |
 | Afficher le top score |
