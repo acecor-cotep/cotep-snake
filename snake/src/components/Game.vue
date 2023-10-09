@@ -1,5 +1,5 @@
 <template>
-    <div class="game-grid">
+    <div class="game-grid" @keydown="handleKeyDown" tabindex="0">
       <div v-for="(row, rowIndex) in grid" :key="rowIndex" class="row">
         <div
           v-for="(cell, colIndex) in row"
@@ -32,8 +32,9 @@
         this.initGame();
     },
     methods: {
-        click() {
-            this.moveSnake();
+        
+        handleKeyDown(event){
+            this.moveSnake(event)
         },
 
         initGame() {
@@ -50,9 +51,25 @@
             this.updadeGrid();
         },
 
-        moveSnake() {
-            const head = this.snake[0] ;
-            const newHead = {row: head.row, col: head.col + 1};
+        moveSnake(event) {
+            const head = this.snake[0];
+            let newHead = {}
+            console.log(event.key);
+            switch (event.key) {
+                case 'ArrowUp':
+                    newHead = {row: head.row-1, col: head.col};
+                    break;
+                case 'ArrowDown':
+                    newHead = {row: head.row+1, col: head.col};
+                    break;
+                case 'ArrowLeft':
+                    newHead = {row: head.row, col: head.col-1};
+                    break;
+                case 'ArrowRight':
+                    newHead = {row: head.row, col: head.col+1};
+                    break;
+            }
+            
 
             this.snake.unshift(newHead);
             this.snake.pop();
@@ -66,7 +83,6 @@
                 }
             }
 
-            console.log(this.snake);
             this.grid[this.snake[0].row][this.snake[0].col] = 'snake'
         },
 
