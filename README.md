@@ -4,7 +4,7 @@
 
 ### Présentation
 
-Bonjour, si vous êtes sur ce dépôt, c'est que vous avez été sélectionné afin de participer à la première étape du recrutement chez COTEP. Félicitations !
+Félicitations ! Vous êtes sur ce dépôt parce que vous avez été sélectionné pour participer à la première étape du recrutement chez COTEP. 
 
 Comme expliqué par email, nous souhaitons que vous réalisiez un test technique afin de pouvoir évaluer vos compétences et capacités de raisonnement. 
 
@@ -44,7 +44,7 @@ Ce test consiste à recréer le jeu snake dans une page web ! Au minimum, le jeu
 
 ### Modalités de rendu
 
-Forker le dépôt et créer une pull request avec pour nom `NOM_PRENOM@ANNEE` (les 6 premières lettres du nom de famille et la 1ère lettre du prénom). Exemples:
+Forker le dépôt et créer un pull-request avec pour nom `NOM_PRENOM@ANNEE` (les 6 premières lettres du nom de famille et la 1ère lettre du prénom). Exemples:
 
 | Prénom   | Nom    | Nom de la pull request    |
 |-------------|-------------|-------------|
