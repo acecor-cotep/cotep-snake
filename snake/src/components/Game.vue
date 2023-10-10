@@ -10,6 +10,8 @@
       </div>
     </div>
 
+    <p>{{ this.score }}</p>
+
     <button @click="click">CLIQUE</button>
   </template>
   
@@ -22,21 +24,44 @@
             grid : [],
             snake: [],
             food: [],
+            direction: '',
+            vitesseSnake: null,
         };
     },
     computed: {
         mid() {
             return Math.floor(this.gridSize / 2)
+        },
+
+        score() {
+            return this.snake.length
         }
     },
     created(){
         this.initGame();
     },
+    watch: {
+        direction() {
+            clearInterval(this.vitesseSnake);
+            this.vitesseSnake = null;
+            this.autoMoveSnake();
+        }
+    },
+
     methods: {
         
-        handleKeyDown(event){
-            this.moveSnake(event)
-        },
+        handleKeyDown(event) {
+            switch (event.key) {
+                case 'ArrowUp':
+                case 'ArrowDown':
+                case 'ArrowLeft':
+                case 'ArrowRight':
+                    this.direction = event.key;
+                    break;
+                default:
+                    return;
+            }
+    },
 
         initGame() {
             for(let row = 0; row < this.gridSize; row++) {
@@ -51,13 +76,16 @@
 
             this.updadeGrid();
             this.placeRandomFood();
+
+            this.autoMoveSnake();
         },
 
-        moveSnake(event) {
+        moveSnake() {
             const head = this.snake[0];
             let newHead = {}
+
             
-            switch (event.key) {
+            switch (this.direction) {
                 case 'ArrowUp':
                     newHead = {row: head.row-1, col: head.col};
                     break;
@@ -98,6 +126,14 @@
            
             this.updadeGrid();
         },
+
+        autoMoveSnake() {
+            if (!this.vitesseSnake) {
+                this.vitesseSnake = setInterval(() => {
+                this.moveSnake();
+                }, 150);
+            }
+        }, 
 
         updadeGrid() {
             for(let row = 0; row < this.gridSize; row++){
@@ -142,9 +178,9 @@
 <style scoped>
 .game-grid {
   display: grid;
-  grid-template-columns: 1fr; /* Définissez le nombre de colonnes et la largeur des cellules */
-  background-color: #222; /* Couleur de fond de la grille */
-  border: 2px solid #333; /* Bordure de la grille */
+  grid-template-columns: 1fr; 
+  background-color: #222; 
+  border: 2px solid #333; 
 }
 
 .row {
@@ -153,18 +189,19 @@
 }
 
 .cell {
-  width: 60px; /* Largeur de chaque cellule */
-  height: 60px; /* Hauteur de chaque cellule */
-  background-color: #444; /* Couleur de fond des cellules vides */
+  width: 60px;
+  height: 60px; 
+  background-color: #444;
   border: 1px solid green;
 }
 
 .snake {
-  background-color: #00ff0d; /* Couleur de fond des cellules du serpent */
+  background-color: #00ff0d;
+  transition: all 0.15s ease;
 }
 
 .food {
-  background-color: #ff0000; /* Couleur de fond des cellules de nourriture */
+  background-color: #ff0000;
 }
 </style>
   
