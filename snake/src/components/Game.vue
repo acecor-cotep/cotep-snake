@@ -74,6 +74,16 @@
                     return;
             }
 
+            if(newHead.row < 0 || newHead.row >= this.gridSize || newHead.col < 0 || newHead.col >= this.gridSize) {
+                alert("COLISION");
+                window.location.reload(true);
+            }
+
+            if(this.grid[newHead.row][newHead.col] === 'snake') {
+                alert("Le serpent s'est mordu la queue ! ");
+                window.location.reload(true);
+            }
+
             this.snake.unshift(newHead);
 
             if(this.snake[0].row === this.food[0].row && this.snake[0].col === this.food[0].col) {
@@ -98,7 +108,6 @@
                 }
             }
 
-            this.grid[this.snake[0].row][this.snake[0].col] = 'snake'
 
             this.snake.forEach( element => {
                 this.grid[element.row][element.col] = 'snake';
@@ -109,19 +118,23 @@
         },
 
         placeRandomFood() {
-            const foodRow = Math.floor(Math.random() * this.gridSize);
-            const foodCol = Math.floor(Math.random() * this.gridSize);
+            let foodRow, foodCol;
+            do {
+                foodRow = Math.floor(Math.random() * this.gridSize);
+                foodCol = Math.floor(Math.random() * this.gridSize);
+            } 
+            while (this.grid[foodRow][foodCol] === 'snake');
 
-            this.food.push({row: foodRow, col: foodCol})
+            this.food.push({ row: foodRow, col: foodCol });
+            this.grid[foodRow][foodCol] = 'food';
+        },
 
-            if(this.grid[foodRow][foodCol] === '') {
-                this.grid[foodRow][foodCol] = 'food';
-                
-            }
-            else {
-                this.placeRandomFood();
-            }
-        }
+        resetGame() {
+            this.grid = [];
+            this.snake = [];
+            this.food = [];
+            this.initGame();
+        },
     }
   }
 </script>
