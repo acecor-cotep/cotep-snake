@@ -20,7 +20,8 @@
         return {
             gridSize: 9,
             grid : [],
-            snake: []
+            snake: [],
+            food: [],
         };
     },
     computed: {
@@ -49,12 +50,13 @@
             this.snake.push({row: this.mid, col: this.mid})
 
             this.updadeGrid();
+            this.placeRandomFood();
         },
 
         moveSnake(event) {
             const head = this.snake[0];
             let newHead = {}
-            console.log(event.key);
+            
             switch (event.key) {
                 case 'ArrowUp':
                     newHead = {row: head.row-1, col: head.col};
@@ -68,33 +70,56 @@
                 case 'ArrowRight':
                     newHead = {row: head.row, col: head.col+1};
                     break;
+                default: 
+                    return;
             }
-            
 
             this.snake.unshift(newHead);
-            this.snake.pop();
+
+            if(this.snake[0].row === this.food[0].row && this.snake[0].col === this.food[0].col) {
+        
+                this.food.pop();
+                this.placeRandomFood();
+            }
+            else {
+                this.snake.pop();
+            }
+           
+           
             this.updadeGrid();
         },
 
         updadeGrid() {
             for(let row = 0; row < this.gridSize; row++){
                 for(let col = 0; col < this.gridSize; col++){
-                    this.grid[row][col] = ''
+                    if(this.grid[row][col] !== 'food') {
+                        this.grid[row][col] = ''
+                    }
                 }
             }
 
             this.grid[this.snake[0].row][this.snake[0].col] = 'snake'
+
+            this.snake.forEach( element => {
+                this.grid[element.row][element.col] = 'snake';
+            })
+            
+            
+            
         },
 
         placeRandomFood() {
-            const firstFoodRow = Math.floor(Math.random() * this.gridSize);
-            const firstFoodCol = Math.floor(Math.random() * this.gridSize);
+            const foodRow = Math.floor(Math.random() * this.gridSize);
+            const foodCol = Math.floor(Math.random() * this.gridSize);
 
-            if(this.grid[firstFoodRow][firstFoodCol] === 0) {
-                this.grid[firstFoodRow][firstFoodCol] = 'food';
+            this.food.push({row: foodRow, col: foodCol})
+
+            if(this.grid[foodRow][foodCol] === '') {
+                this.grid[foodRow][foodCol] = 'food';
+                
             }
             else {
-                this.placeRandomFood
+                this.placeRandomFood();
             }
         }
     }
