@@ -26,6 +26,7 @@
             food: [],
             direction: '',
             vitesseSnake: null,
+            augmentSpeed: 500,
         };
     },
     computed: {
@@ -39,13 +40,6 @@
     },
     created(){
         this.initGame();
-    },
-    watch: {
-        direction() {
-            clearInterval(this.vitesseSnake);
-            this.vitesseSnake = null;
-            this.autoMoveSnake();
-        }
     },
 
     methods: {
@@ -118,6 +112,11 @@
         
                 this.food.pop();
                 this.placeRandomFood();
+
+                this.augmentSpeed *= 0.95;
+                clearInterval(this.vitesseSnake);
+                this.vitesseSnake = null;
+                this.autoMoveSnake();
             }
             else {
                 this.snake.pop();
@@ -131,7 +130,7 @@
             if (!this.vitesseSnake) {
                 this.vitesseSnake = setInterval(() => {
                 this.moveSnake();
-                }, 150);
+                }, this.augmentSpeed);
             }
         }, 
 
@@ -197,7 +196,6 @@
 
 .snake {
   background-color: #00ff0d;
-  transition: all 0.15s ease;
 }
 
 .food {
