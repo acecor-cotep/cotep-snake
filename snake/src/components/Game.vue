@@ -14,13 +14,13 @@
     <p class="score">Meilleur score : {{ topScore[0] }}</p>
 
     <div>
-    <h2>Top 10 des meilleurs scores :</h2>
-    <ol>
-      <li v-for="(score, index) in this.topScore" :key="index">
-        {{ score }}
-      </li>
-    </ol>
-  </div>
+        <h2>Top 10 des meilleurs scores :</h2>
+        <ol>
+        <li v-for="(score, index) in this.topScore" :key="index">
+            {{ score }}
+        </li>
+        </ol>
+    </div>
   
 
   </template>
@@ -58,6 +58,12 @@
 
     methods: {
       handleKeyDown(event) {
+
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+        event.preventDefault();
+        }
+
+
         if (!this.collisionDetected) {
           switch (event.key) {
             case 'ArrowUp':
@@ -253,7 +259,7 @@
   }
   
   .food {
-    background-color: #ff0000;
+    background-color: #bd0000;
   }
   
   .score {
