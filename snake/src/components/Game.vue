@@ -11,9 +11,18 @@
     </div>
   
     <p class="score">Score actuel : {{ score }}</p>
-    <p class="score">Meilleur score : {{ bestScore }}</p>
+    <p class="score">Meilleur score : {{ topScore[0] }}</p>
+
+    <div>
+    <h2>Top 10 des meilleurs scores :</h2>
+    <ol>
+      <li v-for="(score, index) in this.topScore" :key="index">
+        {{ score }}
+      </li>
+    </ol>
+  </div>
   
-    <button @click="resetGame">Rejouer</button>
+
   </template>
   
   <script>
@@ -28,8 +37,8 @@
         direction: '',
         vitesseSnake: null,
         augmentSpeed: 500,
-        bestScore: 0,
         collisionDetected: false,
+        topScore : [12,11,10,9,8,7,6,5,4,3,2]
       };
     },
 
@@ -83,6 +92,7 @@
   
         this.updateGrid();
         this.placeRandomFood();
+        this.addScoreToArray();
   
         this.autoMoveSnake();
       },
@@ -119,6 +129,7 @@
           this.collisionDetected = true;
           alert('COLISION');
           this.stopAutoMove();
+          this.addScoreToArray();
           this.resetGame();
           return;
         }
@@ -127,6 +138,7 @@
           this.collisionDetected = true;
           alert("Le serpent s'est mordu la queue ! ");
           this.stopAutoMove();
+          this.addScoreToArray();
           this.resetGame();
           return;
         }
@@ -155,7 +167,6 @@
       stopAutoMove() {
         clearInterval(this.vitesseSnake);
         this.vitesseSnake = null;
-        this.updateBestScore();
       },
 
       autoMoveSnake() {
@@ -180,8 +191,10 @@
         });
       },
 
-      updateBestScore() {
-        this.bestScore < this.score ? this.bestScore = this.score : this.bestScore
+      addScoreToArray() {
+        this.topScore.push(this.score);
+        this.topScore.sort((a,b) => b-a);
+        this.topScore = this.topScore.slice(0,10);
       },
 
       placeRandomFood() {
