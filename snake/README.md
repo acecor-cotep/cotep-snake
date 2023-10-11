@@ -1,24 +1,10 @@
-# snake
+Pour lancer le projet : 
 
-## Project setup
-```
-npm install
-```
+1 : cd snake
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+2: npm install
 
-### Compiles and minifies for production
-```
-npm run build
-```
+3: npm run serve
 
-### Lints and fixes files
-```
-npm run lint
-```
+4: Pour accéder au site il faut aller sur le localhost avec le port donné par la commande 'npm run serve' (par défaut 8080)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
