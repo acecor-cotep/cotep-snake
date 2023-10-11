@@ -28,6 +28,7 @@
   <script>
   export default {
     name: 'CotepSnake',
+    // Définition des différentes variables utilisées pour le snake
     data() {
       return {
         gridSize: 11,
@@ -42,6 +43,7 @@
       };
     },
 
+    // Variables qui doivent être calculées 
     computed: {
       mid() {
         return Math.floor(this.gridSize / 2);
@@ -58,11 +60,9 @@
 
     methods: {
       handleKeyDown(event) {
-
         if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
         event.preventDefault();
         }
-
 
         if (!this.collisionDetected) {
           switch (event.key) {
@@ -78,6 +78,7 @@
         }
       },
 
+      // Fonction qui initialise le jeu et qu'on appelle pour relancer une partie
       initGame() {
         this.grid = [];
         this.snake = [];
@@ -103,6 +104,7 @@
         this.autoMoveSnake();
       },
 
+      // Fonction qui gère le mouvement du snake, on enregistre les entrées de l'utilisateur
       moveSnake() {
         if (this.collisionDetected) return;
   
@@ -126,6 +128,7 @@
             return;
         }
   
+        // Bloc qui gère les collisions avec les murs
         if (
           newHead.row < 0 ||
           newHead.row >= this.gridSize ||
@@ -133,13 +136,14 @@
           newHead.col >= this.gridSize
         ) {
           this.collisionDetected = true;
-          alert('COLISION');
+          alert('COLLISION');
           this.stopAutoMove();
           this.addScoreToArray();
           this.resetGame();
           return;
         }
   
+        // Bloc qui gère la collision avec le serpent, s'il se fonce dedans ou bien s'il veut aller dans la direction opposée
         if (this.grid[newHead.row][newHead.col] === 'snake') {
           this.collisionDetected = true;
           alert("Le serpent s'est mordu la queue ! ");
@@ -175,6 +179,7 @@
         this.vitesseSnake = null;
       },
 
+      // C'est ici qu'on gère le mouvement automatique du serpent
       autoMoveSnake() {
         if (!this.vitesseSnake) {
           this.vitesseSnake = setInterval(() => {
@@ -202,20 +207,21 @@
             
         });
       },
-
+    // A defaut de gérer les scores dans une BDD je la gère avec un array et la fonction trie et nous donne les 10 meilleurs scores
       addScoreToArray() {
         this.topScore.push(this.score);
         this.topScore.sort((a,b) => b-a);
         this.topScore = this.topScore.slice(0,10);
       },
 
+    // Fonction qui place les pommes au hasard quand la partie débute ou que le serpent en mange une (parfois elle n'apparait pas)
       placeRandomFood() {
         let foodRow, foodCol;
         do {
           foodRow = Math.floor(Math.random() * this.gridSize);
           foodCol = Math.floor(Math.random() * this.gridSize);
         } while (this.grid[foodRow][foodCol] === 'snake');
-  
+
         this.food.push({ row: foodRow, col: foodCol });
         this.grid[foodRow][foodCol] = 'food';
       },
