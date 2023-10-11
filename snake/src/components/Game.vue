@@ -155,6 +155,7 @@
       stopAutoMove() {
         clearInterval(this.vitesseSnake);
         this.vitesseSnake = null;
+        this.updateBestScore();
       },
 
       autoMoveSnake() {
@@ -177,6 +178,10 @@
         this.snake.forEach((element) => {
           this.grid[element.row][element.col] = 'snake';
         });
+      },
+
+      updateBestScore() {
+        this.bestScore < this.score ? this.bestScore = this.score : this.bestScore
       },
 
       placeRandomFood() {
