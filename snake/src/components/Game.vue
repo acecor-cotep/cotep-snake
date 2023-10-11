@@ -30,7 +30,7 @@
     name: 'CotepSnake',
     data() {
       return {
-        gridSize: 9,
+        gridSize: 11,
         grid: [],
         snake: [],
         food: [],
@@ -242,7 +242,6 @@
     width: 60px;
     height: 60px;
     background-color: #444;
-    border: 1px solid green;
   }
   
   .snake {
@@ -262,6 +261,21 @@
     color: #000;
     text-align: center;
     margin: 10px 0;
+  }
+
+  #top-scores {
+  width: 300px;
+  margin: 0 auto;
+  }
+
+  ol {
+    list-style: decimal inside;
+    padding: 0;
+  }
+
+  ol li {
+    font-size: 18px;
+    margin-bottom: 10px;
   }
   </style>
   
