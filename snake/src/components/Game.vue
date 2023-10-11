@@ -9,197 +9,227 @@
         ></div>
       </div>
     </div>
-
-    <p>{{ this.score }}</p>
-
-    <button @click="click">CLIQUE</button>
+  
+    <p class="score">Score actuel : {{ score }}</p>
+    <p class="score">Meilleur score : {{ bestScore }}</p>
+  
+    <button @click="resetGame">Rejouer</button>
   </template>
   
-<script>
+  <script>
   export default {
     name: 'CotepSnake',
     data() {
-        return {
-            gridSize: 9,
-            grid : [],
-            snake: [],
-            food: [],
-            direction: '',
-            vitesseSnake: null,
-            augmentSpeed: 500,
-        };
+      return {
+        gridSize: 9,
+        grid: [],
+        snake: [],
+        food: [],
+        direction: '',
+        vitesseSnake: null,
+        augmentSpeed: 500,
+        bestScore: 0,
+        collisionDetected: false,
+      };
     },
-    computed: {
-        mid() {
-            return Math.floor(this.gridSize / 2)
-        },
 
-        score() {
-            return this.snake.length
-        }
+    computed: {
+      mid() {
+        return Math.floor(this.gridSize / 2);
+      },
+
+      score() {
+        return this.snake.length;
+      },
     },
-    created(){
-        this.initGame();
+
+    created() {
+      this.initGame();
     },
 
     methods: {
-        
-        handleKeyDown(event) {
-            switch (event.key) {
-                case 'ArrowUp':
-                case 'ArrowDown':
-                case 'ArrowLeft':
-                case 'ArrowRight':
-                    this.direction = event.key;
-                    break;
-                default:
-                    return;
-            }
-    },
+      handleKeyDown(event) {
+        if (!this.collisionDetected) {
+          switch (event.key) {
+            case 'ArrowUp':
+            case 'ArrowDown':
+            case 'ArrowLeft':
+            case 'ArrowRight':
+              this.direction = event.key;
+              break;
+            default:
+              return;
+          }
+        }
+      },
 
-        initGame() {
-            for(let row = 0; row < this.gridSize; row++) {
-                let rowArray = [];
-                for(let col = 0; col < this.gridSize; col++) {
-                    rowArray.push(0);
-                }
-                this.grid.push(rowArray)
-            }
-
-            this.snake.push({row: this.mid, col: this.mid})
-
-            this.updadeGrid();
-            this.placeRandomFood();
-
-            this.autoMoveSnake();
-        },
-
-        moveSnake() {
-            const head = this.snake[0];
-            let newHead = {}
-
-            
-            switch (this.direction) {
-                case 'ArrowUp':
-                    newHead = {row: head.row-1, col: head.col};
-                    break;
-                case 'ArrowDown':
-                    newHead = {row: head.row+1, col: head.col};
-                    break;
-                case 'ArrowLeft':
-                    newHead = {row: head.row, col: head.col-1};
-                    break;
-                case 'ArrowRight':
-                    newHead = {row: head.row, col: head.col+1};
-                    break;
-                default: 
-                    return;
-            }
-
-            if(newHead.row < 0 || newHead.row >= this.gridSize || newHead.col < 0 || newHead.col >= this.gridSize) {
-                alert("COLISION");
-                window.location.reload(true);
-            }
-
-            if(this.grid[newHead.row][newHead.col] === 'snake') {
-                alert("Le serpent s'est mordu la queue ! ");
-                window.location.reload(true);
-            }
-
-            this.snake.unshift(newHead);
-
-            if(this.snake[0].row === this.food[0].row && this.snake[0].col === this.food[0].col) {
-        
-                this.food.pop();
-                this.placeRandomFood();
-
-                this.augmentSpeed *= 0.95;
-                clearInterval(this.vitesseSnake);
-                this.vitesseSnake = null;
-                this.autoMoveSnake();
-            }
-            else {
-                this.snake.pop();
-            }
-           
-           
-            this.updadeGrid();
-        },
-
-        autoMoveSnake() {
-            if (!this.vitesseSnake) {
-                this.vitesseSnake = setInterval(() => {
-                this.moveSnake();
-                }, this.augmentSpeed);
-            }
-        }, 
-
-        updadeGrid() {
-            for(let row = 0; row < this.gridSize; row++){
-                for(let col = 0; col < this.gridSize; col++){
-                    if(this.grid[row][col] !== 'food') {
-                        this.grid[row][col] = ''
-                    }
-                }
-            }
-
-
-            this.snake.forEach( element => {
-                this.grid[element.row][element.col] = 'snake';
-            })
-            
-            
-            
-        },
-
-        placeRandomFood() {
-            let foodRow, foodCol;
-            do {
-                foodRow = Math.floor(Math.random() * this.gridSize);
-                foodCol = Math.floor(Math.random() * this.gridSize);
-            } 
-            while (this.grid[foodRow][foodCol] === 'snake');
-
-            this.food.push({ row: foodRow, col: foodCol });
-            this.grid[foodRow][foodCol] = 'food';
-        },
-
-        resetGame() {
-            this.grid = [];
-            this.snake = [];
-            this.food = [];
-            this.initGame();
-        },
-    }
-  }
-</script>
+      initGame() {
+        this.grid = [];
+        this.snake = [];
+        this.food = [];
+        this.direction = '';
+        this.augmentSpeed = 500;
+        this.collisionDetected = false;
   
-<style scoped>
-.game-grid {
-  display: grid;
-  grid-template-columns: 1fr; 
-  background-color: #222; 
-  border: 2px solid #333; 
-}
+        for (let row = 0; row < this.gridSize; row++) {
+          let rowArray = [];
+          for (let col = 0; col < this.gridSize; col++) {
+            rowArray.push(0);
+          }
+          this.grid.push(rowArray);
+        }
+  
+        this.snake.push({ row: this.mid, col: this.mid });
+  
+        this.updateGrid();
+        this.placeRandomFood();
+  
+        this.autoMoveSnake();
+      },
 
-.row {
-  display: flex;
-  justify-content: center;
-}
+      moveSnake() {
+        if (this.collisionDetected) return;
+  
+        const head = this.snake[0];
+        let newHead = {};
+  
+        switch (this.direction) {
+          case 'ArrowUp':
+            newHead = { row: head.row - 1, col: head.col };
+            break;
+          case 'ArrowDown':
+            newHead = { row: head.row + 1, col: head.col };
+            break;
+          case 'ArrowLeft':
+            newHead = { row: head.row, col: head.col - 1 };
+            break;
+          case 'ArrowRight':
+            newHead = { row: head.row, col: head.col + 1 };
+            break;
+          default:
+            return;
+        }
+  
+        if (
+          newHead.row < 0 ||
+          newHead.row >= this.gridSize ||
+          newHead.col < 0 ||
+          newHead.col >= this.gridSize
+        ) {
+          this.collisionDetected = true;
+          alert('COLISION');
+          this.stopAutoMove();
+          this.resetGame();
+          return;
+        }
+  
+        if (this.grid[newHead.row][newHead.col] === 'snake') {
+          this.collisionDetected = true;
+          alert("Le serpent s'est mordu la queue ! ");
+          this.stopAutoMove();
+          this.resetGame();
+          return;
+        }
+  
+        if (!this.collisionDetected) {
+          this.snake.unshift(newHead);
+  
+          if (
+            this.snake[0].row === this.food[0].row &&
+            this.snake[0].col === this.food[0].col
+          ) {
+            this.food.pop();
+            this.placeRandomFood();
+  
+            this.augmentSpeed *= 0.95;
+            this.stopAutoMove();
+            this.autoMoveSnake();
+          } else {
+            this.snake.pop();
+          }
+  
+          this.updateGrid();
+        }
+      },
 
-.cell {
-  width: 60px;
-  height: 60px; 
-  background-color: #444;
-  border: 1px solid green;
-}
+      stopAutoMove() {
+        clearInterval(this.vitesseSnake);
+        this.vitesseSnake = null;
+      },
 
-.snake {
-  background-color: #00ff0d;
-}
+      autoMoveSnake() {
+        if (!this.vitesseSnake) {
+          this.vitesseSnake = setInterval(() => {
+            this.moveSnake();
+          }, this.augmentSpeed);
+        }
+      },
 
-.food {
-  background-color: #ff0000;
-}
-</style>
+      updateGrid() {
+        for (let row = 0; row < this.gridSize; row++) {
+          for (let col = 0; col < this.gridSize; col++) {
+            if (this.grid[row][col] !== 'food') {
+              this.grid[row][col] = '';
+            }
+          }
+        }
+  
+        this.snake.forEach((element) => {
+          this.grid[element.row][element.col] = 'snake';
+        });
+      },
+
+      placeRandomFood() {
+        let foodRow, foodCol;
+        do {
+          foodRow = Math.floor(Math.random() * this.gridSize);
+          foodCol = Math.floor(Math.random() * this.gridSize);
+        } while (this.grid[foodRow][foodCol] === 'snake');
+  
+        this.food.push({ row: foodRow, col: foodCol });
+        this.grid[foodRow][foodCol] = 'food';
+      },
+
+      resetGame() {
+        this.initGame();
+      },
+    },
+  };
+  </script>
+  
+  <style scoped>
+  .game-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #222;
+    border: 2px solid #333;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .cell {
+    width: 60px;
+    height: 60px;
+    background-color: #444;
+    border: 1px solid green;
+  }
+  
+  .snake {
+    background-color: #00ff0d;
+  }
+  
+  .food {
+    background-color: #ff0000;
+  }
+  
+  .score {
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+    margin: 10px 0;
+  }
+  </style>
   
