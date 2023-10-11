@@ -5,7 +5,7 @@
           v-for="(cell, colIndex) in row"
           :key="colIndex"
           class="cell"
-          :class="{ snake: cell === 'snake', food: cell === 'food' }"
+          :class="{ snake: cell === 'snake', food: cell === 'food', head: cell === 'head'}"
         ></div>
       </div>
     </div>
@@ -186,8 +186,14 @@
           }
         }
   
-        this.snake.forEach((element) => {
-          this.grid[element.row][element.col] = 'snake';
+        this.snake.forEach((element,index) => {
+            if(index === 0) {
+                this.grid[element.row][element.col] = 'head';
+            }
+            else {
+                this.grid[element.row][element.col] = 'snake';
+            }
+            
         });
       },
 
@@ -206,6 +212,10 @@
   
         this.food.push({ row: foodRow, col: foodCol });
         this.grid[foodRow][foodCol] = 'food';
+      },
+
+      isSnakeHead(row,col) {
+        return row === this.snake[0].row && col === this.snake[0].col;
       },
 
       resetGame() {
@@ -237,6 +247,10 @@
   
   .snake {
     background-color: #00ff0d;
+  }
+
+  .head {
+    background-color: #006905;
   }
   
   .food {
