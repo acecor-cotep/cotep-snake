@@ -48,8 +48,8 @@ Forker le dépôt et créer un pull-request avec pour nom `NOM_PRENOM@ANNEE` (le
 
 | Prénom   | Nom    | Nom de la pull request    |
 |-------------|-------------|-------------|
-| Gwenaelle | BOURGOING         | bourgo_g@2023  |
-| Yvan | PASTA         | pasta_y@2023  |
+| Gwenaelle | BOURGOING         | bourgo_g@2024  |
+| Yvan | PASTA         | pasta_y@2024  |
 
 ----------------
 
