@@ -1,0 +1,18 @@
+.snake-segment {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border: 1px solid black;
+  }
+  
+  .snake-head {
+    background-color: darkgreen;
+  }
+  
+  .snake-food {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border: 1px solid black;
+  }
+  

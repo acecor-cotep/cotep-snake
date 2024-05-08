@@ -1,0 +1,4 @@
+<button type="button" (click) = "RunSnake()" *ngIf = "gameService.button_play">Jouer</button>
+<button (click)="PauseandResumeSnake()" *ngIf = "gameService.button_others">{{gameService.myButton}}</button>
+<button (click)="StopSnake()" *ngIf = "gameService.button_others">Stop</button>
+<button (click)="RestartSnake()" *ngIf = "gameService.button_others">Restart</button>

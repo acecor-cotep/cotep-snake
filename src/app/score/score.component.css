@@ -1,0 +1,17 @@
+.score-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .score-item {
+    margin-bottom: 10px;
+  }
+  
+  .score-label {
+    font-weight: bold;
+  }
+  
+  .score-value {
+    margin-left: 10px;
+  }
+  
