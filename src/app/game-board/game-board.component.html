@@ -1,0 +1,10 @@
+<!-- game-board.component.html -->
+
+<div class="game-board">
+    <div *ngFor="let row of rows; let y = index" class="board-row">
+      <div *ngFor="let col of cols; let x = index" class="board-cell">
+        <div *ngIf="isSnake(x, y)" class="snake"></div>
+        <div *ngIf="isFood(x, y)" class="food"></div>
+      </div>
+    </div>
+  </div>

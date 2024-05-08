@@ -1,0 +1,18 @@
+<div class="container">
+    <section class="main-content">
+        <h1>Bienvenue sur notre site</h1>
+        <p>Snake Game :</p>
+        <a class="button" href="#popup1">Jouer Snake</a>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>Snake</h2>
+                <a (click) = "gameService.stopMusic()" class="close" href="#">&times;</a>
+                <div class="content">
+                    <app-game-board></app-game-board>
+                    <app-snake></app-snake>
+                    <app-score></app-score>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

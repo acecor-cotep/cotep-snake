@@ -1,0 +1,32 @@
+/* game-board.component.css */
+.game-board {
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px; /* Taille totale du plateau de jeu */
+  }
+  
+  .board-row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .board-cell {
+    width: 20px; /* Taille d'une cellule */
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+  }
+  
+  .snake {
+    width: 100%;
+    height: 100%;
+    background-color: green; /* Couleur du serpent */
+  }
+  
+  .food {
+    width: 100%;
+    height: 100%;
+    background-color: red; /* Couleur de la nourriture */
+  }
+  
