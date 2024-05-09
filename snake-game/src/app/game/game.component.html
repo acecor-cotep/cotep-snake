@@ -1,0 +1,7 @@
+<div id="game">
+  <canvas #gameCanvas width="400" height="400"></canvas>
+  <div *ngIf="gameOver" class="game-over">Game Over</div>
+  <div class="score">Score: {{ score }}</div>
+  <button (click)="togglePause()">{{ isPaused ? 'Resume' : 'Pause' }}</button>
+  <button (click)="restart()">Restart</button>
+</div>
